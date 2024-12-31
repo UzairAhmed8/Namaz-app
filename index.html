@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Times</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Namaz Timing</h1>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="subcontainer">
+            <label for="userCountry">
+                <p class="la">
+                    Country:
+                </p>
+                <input type="text" id="userCountry" required placeholder="Enter Your Country">
+            </label>
+            <br><br>
+            <label for="userCity">
+                <p class="la">
+                    City:
+                </p>
+                <input type="text" id="userCity" required placeholder="Enter Your City">
+            </label>
+            <br><br>
+            <div class="buton-con">
+                <button onclick="calculateTime()">Get time</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main1">
+        <div class="Prayers">
+            <p>Fajr</p>
+            <p id="fajr-time" class="times"></p>
+        </div>
+        <div class="Prayers">
+            <p>Zuhar</p>
+            <p id="zuhar-time" class="times"></p>
+        </div>
+        <div class="Prayers">
+            <p>Asar</p>
+            <p id="asar-time" class="times"></p>
+        </div>
+        <div class="Prayers">
+            <p>Maghrib</p>
+            <p id="maghrib-time" class="times"></p>
+        </div>
+        <div class="Prayers">
+            <p>Isha</p>
+            <p id="isha-time" class="times"></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateTime() {
+            const country = document.getElementById("userCountry").value.trim();
+            const city = document.getElementById("userCity").value.trim();
+
+            if (!country || !city) {
+                alert("Please enter both country and city.");
+                return;
+            }
+
+            axios.get(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=1`)
+                .then(function (response) {
+                    const timings = response.data.data.timings;
+
+                    document.getElementById("fajr-time").textContent = timings.Fajr;
+                    document.getElementById("zuhar-time").textContent = timings.Dhuhr;
+                    document.getElementById("asar-time").textContent = timings.Asr;
+                    document.getElementById("maghrib-time").textContent = timings.Maghrib;
+                    document.getElementById("isha-time").textContent = timings.Isha;
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    alert("Could not fetch prayer times. Please check your inputs.");
+                });
+        }
+    </script>
+</body>
+</html>
