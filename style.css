@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 body{
+
     background: url(imgs/Scenery.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
+    /* background-color: black; */
+    font-family: "Rubik Vinyl", serif;
+    text-shadow: 3px 3px 10px orangered;
 }
 
 nav{
@@ -12,6 +18,7 @@ nav{
     background: linear-gradient(15deg , yellow , orangered , yellow);
     -webkit-background-clip: text;
     color: transparent;
+    font-family: "Rubik Vinyl", serif;
 }
 
 .container{
@@ -27,15 +34,16 @@ nav{
 }
 
 .times , p{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     font-size: 25px;
     font-weight: bolder;
     font-family: sans-serif;
-    text-shadow: 1px 1px 10px yellow;
-    background: linear-gradient(35deg, yellow, cyan, pink,white);
+    text-shadow: 1px 1px 10px white;
+    background: linear-gradient(35deg, magenta, cyan);
     -webkit-background-clip: text;
     color: transparent;
     padding: 5px 15px;
+    font-family: "Anton", serif;
 }
 
 input{
